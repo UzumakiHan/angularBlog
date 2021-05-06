@@ -1,27 +1,39 @@
-# Antdng
+# angularBlog
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.2.
+```
+angular+node(express)+mongoDb
+```
 
-## Development server
+## #功能描述：主要实现博客用户的注册登录、博客的编写发布编辑删除、多用户的博客列表展示、个人博客的列表展示、个人资料的编辑、用户登录密码的修改。
+前端部分：
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+下载依赖
 
-## Code scaffolding
+```
+cnpm install
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+运行：
 
-## Build
+```
+npm start
+```
+打包：
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```
+npm build
+```
+后台部分：（agBlogServer）
 
-## Running unit tests
+下载依赖：
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+cnpm install
+```
 
-## Running end-to-end tests
+运行：
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```
+npm start
+```
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
