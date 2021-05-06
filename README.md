@@ -39,7 +39,7 @@ npm start
 
 ## 首页：
 
-![image-20210506093648309](C:\Users\Naruto\AppData\Roaming\Typora\typora-user-images\image-20210506093648309.png)
+[image-20210506093648309
 
 ## 文章详情：
 
@@ -47,7 +47,7 @@ npm start
 
 ## 登录页面：
 
-![image-20210506093934403](C:\Users\Naruto\AppData\Roaming\Typora\typora-user-images\image-20210506093934403.png)
+image-20210506093934403
 
 ## 发表博客：
 
