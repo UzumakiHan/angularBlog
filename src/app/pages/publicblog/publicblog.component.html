@@ -1,0 +1,42 @@
+<div class="public-blog">
+
+  <div nz-row>
+    <div nz-col nzSpan="22" nzOffset="1">
+      <div style="padding:30px;width: 100%;z-index: 1;">
+        <nz-card style="width:100%;" [nzBordered]="false" [nzTitle]="blogtitle1" [nzExtra]="extraTemplate">
+          <div class="wangeditor-box">
+            <div id="editorMenu"></div>
+            <div id="editor" style="height:400px;max-height:500px;z-index: 1;">
+
+            </div>
+
+
+          </div>
+        </nz-card>
+
+      </div>
+
+      <ng-template #extraTemplate>
+        <button nz-button nzType="primary" (click)="showPublicModal()">发表文章</button>
+      </ng-template>
+      <ng-template #blogtitle1>
+        <input nz-input placeholder="请输入文章标题" [(ngModel)]="blogtitle" style="width: 500px;margin-left: 40px;" />
+      </ng-template>
+    </div>
+  </div>
+
+</div>
+
+<nz-modal [(nzVisible)]="isVisible" nzTitle="发表文章" [nzContent]="modalContent" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" >
+
+  <ng-template #modalContent>
+    <p> <input nz-input placeholder="文章标签" [(ngModel)]="blogsort" /></p>
+    <!-- <p><input nz-input placeholder="文章类型" [(ngModel)]="blogtype" /></p> -->
+    <p><nz-select nzShowSearch nzAllowClear nzPlaceHolder="文章类型" [(ngModel)]="blogtype" style="width: 100%;">
+      <nz-option nzLabel="原创" nzValue="原创"></nz-option>
+      <nz-option nzLabel="转载" nzValue="转载"></nz-option>
+      <nz-option nzLabel="翻译" nzValue="翻译"></nz-option>
+    </nz-select></p>
+  </ng-template>
+
+</nz-modal>

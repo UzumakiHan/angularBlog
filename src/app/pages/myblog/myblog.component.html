@@ -1,0 +1,144 @@
+<div nz-row nzJustify="space-around" style="margin-top:20px;margin-bottom: 10px;">
+    <div nz-col nzSpan="16" *ngIf='blogList.length>0'>
+        <div style="margin-bottom: 10px;cursor: pointer;" *ngFor="let blog of blogList;let i = index"
+            (click)='goBlogDetail(blog.id)'>
+            <nz-card style="width:100%;" [nzTitle]="blog.title" [nzExtra]="extraTemplate">
+                <p class="blog-content" [innerHTML]="htmlList[i]">
+                    <!-- {{htmlList[i]}} -->
+                </p>
+                <div class="blog-icon">
+                    <span><i nz-icon nzType="eye" nzTheme="outline"></i>{{blog.readcount}}</span>
+                    <span><i nz-icon nzType="user" nzTheme="outline"></i>{{blog.author}}</span>
+                    <span><i nz-icon nzType="tag" nzTheme="outline"></i>
+                        <nz-tag [nzColor]="'magenta'" style="margin-left: 6px;">{{blog.label}}</nz-tag>
+                    </span>
+                    <span><i nz-icon nzType="delete" nzTheme="outline" (click)="deleteBlog($event,blog.id)"></i></span>
+                    <span><i nz-icon nzType="edit" nzTheme="outline" (click)="editBlog($event,blog.id)"></i></span>
+                </div>
+            </nz-card>
+            <ng-template #extraTemplate>
+                {{blog.currentime | date:'yyyy-MM-dd HH:mm:ss'}}
+            </ng-template>
+        </div>
+
+        <nz-pagination [nzPageIndex]="1" [nzTotal]="total*10" (nzPageIndexChange)='getPage($event)'></nz-pagination>
+    </div>
+    <div nz-col nzSpan="16" *ngIf='blogList.length===0'>
+        <nz-empty nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+            [nzNotFoundContent]="contentTpl" [nzNotFoundFooter]="footerTpl">
+            <ng-template #contentTpl>
+                <span> Customize <a href="#API">Description</a> </span>
+            </ng-template>
+            <ng-template #footerTpl>
+                <button nz-button nzType="primary" (click)="createBlog()">编写第一篇文章</button>
+            </ng-template>
+        </nz-empty>
+    </div>
+    <div nz-col nzSpan="6">
+        <!-- <nz-list nzBordered nzHeader="热门文章" style="width: 100%;background-color: #fff;">
+            <nz-list-item *ngFor="let item of hotBlogList;let i = index" class="hover-blog"  (click)='goBlogDetail(item.id)'>
+                <span nz-typography><mark>{{i+1}}</mark></span>
+                {{ item.title }}
+            </nz-list-item>
+        </nz-list> -->
+        <nz-card style="width:300px;" [nzCover]="coverTemplate"
+            [nzActions]="[actionSetting, actionEdit, actionEllipsis]">
+            <nz-card-meta [nzTitle]="userInfo['username']" [nzDescription]="userInfo['information']"
+                [nzAvatar]="avatarTemplate">
+            </nz-card-meta>
+        </nz-card>
+        <ng-template #avatarTemplate>
+            <nz-avatar [nzSrc]='userInfo["image"]'></nz-avatar>
+        </ng-template>
+        <ng-template #coverTemplate>
+            <img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />
+        </ng-template>
+        <ng-template #actionSetting>
+            <i nz-icon nzType="edit" (click)='showEditModal()'></i>
+        </ng-template>
+        <ng-template #actionEdit>
+            <i nz-icon nzType="github"></i>
+        </ng-template>
+        <ng-template #actionEllipsis>
+            <i nz-icon nzType="bold"></i>
+        </ng-template>
+    </div>
+
+</div>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="发表文章" [nzContent]="modalContent" (nzOnCancel)="handleCancel()"
+    (nzOnOk)="changeUserInfo()">
+
+    <ng-template #modalContent>
+        
+        <div nz-row style="margin-bottom: 16px;">
+            <div nz-col [nzSm]="4" [nzXs]="24" style="display: flex;align-items: center;justify-content: center;">
+                头像：
+            </div>
+            <div nz-col [nzSm]="17" [nzXs]="24">
+                <app-image-upload></app-image-upload>
+            </div>
+        </div>
+        <div nz-row style="margin-bottom: 16px;">
+            <div nz-col [nzSm]="4" [nzXs]="24" style="display: flex;align-items: center;justify-content: center;">
+                用户名：
+            </div>
+            <div nz-col [nzSm]="17" [nzXs]="24">
+                <input nz-input disabled [(ngModel)]="username" />
+            </div>
+        </div>
+        <div nz-row style="margin-bottom: 16px;">
+            <div nz-col [nzSm]="4" [nzXs]="24" style="display: flex;align-items: center;justify-content: center;">
+                实名：
+            </div>
+            <div nz-col [nzSm]="17" [nzXs]="24">
+                <input nz-input [(ngModel)]="realname" />
+            </div>
+        </div>
+        <div nz-row style="margin-bottom: 16px;">
+            <div nz-col [nzSm]="4" [nzXs]="24" style="display: flex;align-items: center;justify-content: center;">
+                从事行业：
+            </div>
+            <div nz-col [nzSm]="17" [nzXs]="24">
+                <input nz-input [(ngModel)]="job" />
+            </div>
+        </div>
+        <div nz-row style="margin-bottom: 16px;">
+            <div nz-col [nzSm]="4" [nzXs]="24" style="display: flex;align-items: center;justify-content: center;">
+                性别：
+            </div>
+            <div nz-col [nzSm]="17" [nzXs]="24">
+                <nz-select nzAllowClear nzPlaceHolder="性别" [(ngModel)]="sex" style="width: 100%;">
+                    <nz-option nzLabel="男" nzValue="男"></nz-option>
+                    <nz-option nzLabel="女" nzValue="女"></nz-option>
+
+                </nz-select>
+            </div>
+
+        </div>
+        <div nz-row style="margin-bottom: 16px;">
+            <div nz-col [nzSm]="4" [nzXs]="24" style="display: flex;align-items: center;justify-content: center;">
+                地区：
+            </div>
+            <div nz-col [nzSm]="17" [nzXs]="24">
+                <input nz-input [(ngModel)]="location" />
+            </div>
+        </div>
+        <div nz-row style="margin-bottom: 16px;">
+            <div nz-col [nzSm]="4" [nzXs]="24" style="display: flex;align-items: center;justify-content: center;">
+                生日：
+            </div>
+            <div nz-col [nzSm]="17" [nzXs]="24">
+                <input nz-input [(ngModel)]="birthday" />
+            </div>
+        </div>
+        <div nz-row style="margin-bottom: 16px;">
+            <div nz-col [nzSm]="4" [nzXs]="24" style="display: flex;align-items: center;justify-content: center;">
+                个人简介：
+            </div>
+            <div nz-col [nzSm]="17" [nzXs]="24">
+                <input nz-input [(ngModel)]="information" />
+            </div>
+        </div>
+    </ng-template>
+
+</nz-modal>

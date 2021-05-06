@@ -1,0 +1,36 @@
+
+<div class="login">
+    <!-- <nz-card style="width:300px;" nzTitle="Card title" >
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+      </nz-card> -->
+      <div nz-row style="padding-top: 14%;">
+        <div nz-col [nzXs]="{ span: 20, offset: 2 }" [nzLg]="{ span: 8, offset: 8 }">
+            <nz-card style="width:100%;" [nzTitle]="cardTitle" >
+                <form nz-form class="login-form" [formGroup]="validateForm" (ngSubmit)="onSubmit()">
+
+                    <nz-form-item>
+                        <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired nzFor="用户名">用户名</nz-form-label>
+                        <nz-form-control [nzSm]="20" [nzXs]="24" nzErrorTip="用户名不能为空且长度不能少于5位" nzRequired>
+                            <nz-input-group nzPrefixIcon="user">
+                                <input type="text" nz-input formControlName="userName" placeholder="用户名" />
+                            </nz-input-group>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired nzFor="密码">密码</nz-form-label>
+                        <nz-form-control [nzSm]="20" [nzXs]="24" nzErrorTip="密码不能为空且长度不能少于5位">
+                            <nz-input-group nzPrefixIcon="lock">
+                                <input type="password" formControlName="password" nz-input placeholder="密码" />
+                            </nz-input-group>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <button nz-button [nzLoading]="isLoadingOne" class="login-form-button login-form-margin" [nzType]="'primary'" [nzSize]="size" style="margin-left: 40%;">{{buttonText}}</button><br>
+                    <a href="javascript:void(0)" (click)="toggleLogin()">{{linkText}}</a>
+                </form>
+                
+              </nz-card>
+        </div>
+      </div>
+</div>

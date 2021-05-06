@@ -1,0 +1,56 @@
+<div nz-row nzJustify="space-around" style="margin-top:20px;margin-bottom: 10px;">
+    <div nz-col nzSpan="16" *ngIf='blogList.length>0'>
+        <div style="margin-bottom: 10px;cursor: pointer;" *ngFor="let blog of blogList;let i = index"
+            (click)='goBlogDetail(blog.id)'>
+            <nz-card style="width:100%;" [nzTitle]="blog.title" [nzExtra]="extraTemplate">
+                <p class="blog-content" [innerHTML]="htmlList[i]">
+                    <!-- {{htmlList[i]}} -->
+                </p>
+                <div class="blog-icon">
+                    <span><i nz-icon nzType="eye" nzTheme="outline"></i>{{blog.readcount}}</span>
+                    <span><i nz-icon nzType="user" nzTheme="outline"></i>{{blog.author}}</span>
+                    <span><i nz-icon nzType="tag" nzTheme="outline"></i>
+                        <nz-tag [nzColor]="'magenta'" style="margin-left: 6px;">{{blog.label}}</nz-tag>
+                    </span>
+
+                </div>
+            </nz-card>
+            <ng-template #extraTemplate>
+                {{blog.currentime | date:'yyyy-MM-dd HH:mm:ss'}}
+            </ng-template>
+        </div>
+
+        <nz-pagination [nzPageIndex]="1" [nzTotal]="total*10" (nzPageIndexChange)='getPage($event)'></nz-pagination>
+        <!-- <nz-empty [style.block]='blogList.length===0?"block":"none"'></nz-empty> -->
+    </div>
+    <div nz-col nzSpan="16"  *ngIf='blogList.length===0'>
+        <nz-empty></nz-empty>
+    </div>
+    <div nz-col nzSpan="6">
+        <nz-card style="width:100%;margin-bottom: 10px;" [nzCover]="coverTemplate"
+            [nzActions]="[ actionEdit, actionEllipsis]">
+            <nz-card-meta nzTitle="Jeslie He" nzDescription="纵有疾风起，人生不言弃！" [nzAvatar]="avatarTemplate">
+            </nz-card-meta>
+        </nz-card>
+        <ng-template #avatarTemplate>
+            <nz-avatar [nzSrc]='editUserImg'></nz-avatar>
+        </ng-template>
+        <ng-template #coverTemplate>
+            <img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />
+        </ng-template>
+        <ng-template #actionEdit>
+            <i nz-icon nzType="github" (click)='goGithub()'></i>
+        </ng-template>
+        <ng-template #actionEllipsis>
+            <i nz-icon nzType="bold" (click)='goCsdn()'></i>
+        </ng-template>
+        <nz-list nzBordered nzHeader="热门文章" style="width: 100%;background-color: #fff;">
+            <nz-list-item *ngFor="let item of hotBlogList;let i = index" class="hover-blog"
+                (click)='goBlogDetail(item.id)'>
+                <span nz-typography>{{i+1}}</span>
+                {{ item.title }}
+            </nz-list-item>
+        </nz-list>
+
+    </div>
+</div>

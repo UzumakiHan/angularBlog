@@ -1,0 +1,74 @@
+<nz-layout class="app-layout">
+  <ul nz-menu nzMode="horizontal" style="position: relative;">
+    <li nz-menu-item nzSelected>
+      <span [routerLink]="['/']" routerLinkActive='router-link-active'>
+        <i nz-icon nzType="home"></i>
+        首页
+      </span>
+    </li>
+    <li nz-menu-item (click)='goTopublic()'>
+      <i nz-icon nzType="form"></i>
+      发表博客
+    </li>
+    <li nz-menu-item (click)='aboutBlog()'>
+      <i nz-icon nzType="bold"></i>
+      关于博客
+      </li>
+    <li nz-menu-item (click)='aboutMe()'>
+      <i nz-icon nzType="user"></i>
+      关于作者
+    </li>
+    <li nz-menu-item  (click)='gotoWebExample()'>
+      <i nz-icon nzType="html5"></i>
+      前端实例
+    </li>
+    <li nz-menu-item style="position: absolute;right: 5%;" [style.display]="loginKey?'none':'block'">
+      <span [routerLink]="['/login']" routerLinkActive='router-link-active'>
+        <i nz-icon nzType="login" nzTheme="outline"></i>
+        登录
+      </span>
+
+    </li>
+    <li nz-submenu [nzTitle]="extraTemplate"  style="position: absolute;right: 5%;" [style.display]="loginKey?'block':'none'">
+      <ul>
+        <li nz-menu-group >
+          <ul>
+            <li nz-menu-item>
+              <span [routerLink]="['/myblog']" routerLinkActive='router-link-active'>
+                <i nz-icon nzType="bold" nzTheme="outline"></i>
+                我的博客
+              </span>
+              
+            </li>
+            
+          </ul>
+        </li>
+        <li nz-menu-group >
+          <ul>
+            <li nz-menu-item>
+              <span [routerLink]="['/changepassword']" routerLinkActive='router-link-active'>
+                <i nz-icon nzType="edit" nzTheme="outline"></i>
+              修改密码
+              </span>
+             
+            </li>
+            
+          </ul>
+        </li>
+        <li nz-menu-group >
+          <ul>
+            <li nz-menu-item (click)="logout()">
+              <i nz-icon nzType="logout" nzTheme="outline"></i>
+              退出登录
+            </li>
+            
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <ng-template #extraTemplate >
+      <nz-avatar nzIcon="user" [nzSrc]='userInfo["image"]' ></nz-avatar>
+      <span style="margin-left:8px">{{userInfo['username']}}</span>
+   </ng-template>
+  </ul>
+</nz-layout>

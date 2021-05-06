@@ -1,0 +1,45 @@
+// @import "~wangedit/dist/wangEditor.min.css";
+
+.wangeditor-box {
+  padding: 20px;
+  overflow: auto;
+  height: 100%;
+
+  #editor{
+    height: 400px;
+    width: auto;
+    border:1px solid #ccc;
+  }
+  .w-e-toolbar{
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+  }
+
+  .btn-group {
+    button {
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+    .show-message {
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      height: 80px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: normal;
+    }
+
+    .text-area {
+      width: 50%;
+    }
+    .margin-l-10 {
+      margin-left: 10px;
+    }
+  }
+}
+.w-e-menu,.w-e-toolbar{
+  z-index: 2 !important;
+}
+.w-e-text-container{
+  z-index: 1 !important;
+}

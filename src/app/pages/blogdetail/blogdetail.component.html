@@ -1,0 +1,43 @@
+<div nz-row nzJustify="space-around" style="margin-top:20px;margin-bottom: 10px;">
+    <div nz-col nzSpan="16">
+       <div style="margin-bottom: 10px;" >
+        <nz-card style="width:100%;" [nzTitle]="titleExample" [nzExtra]="extraTemplate">
+            <p class="blog-content" [innerHTML]='htmlStr' >
+                
+             <!-- {{htmlList[i]}} -->
+            </p>
+            <!-- <div class="blog-icon">
+                <span><i nz-icon nzType="eye" nzTheme="outline"></i>1</span>
+                <span><i nz-icon nzType="user" nzTheme="outline"></i>admin</span>
+                <span><i nz-icon nzType="tag" nzTheme="outline"></i>
+                    <nz-tag [nzColor]="'magenta'" style="margin-left: 6px;">css</nz-tag>
+                </span>
+
+            </div> -->
+        </nz-card>
+        <ng-template #titleExample>
+<span>
+    <i nz-icon nzType="left-circle" nzTheme="twotone" style="cursor: pointer;" (click)='goBack()'></i>
+    {{blogDetail[0].title}}
+</span>
+        </ng-template>
+        <ng-template #extraTemplate>
+            <div class="blog-icon">
+                <span><i nz-icon nzType="eye" nzTheme="outline"></i>{{readcount}}</span>
+                <span><i nz-icon nzType="user" nzTheme="outline"></i>{{blogDetail[0].author}}</span>
+                <span><i nz-icon nzType="tag" nzTheme="outline"></i>
+                    <nz-tag [nzColor]="'magenta'" style="margin-left: 6px;">{{blogDetail[0].label}}</nz-tag>
+                </span>
+                <span><i nz-icon nzType="field-time" nzTheme="outline" style="margin-right: 6px;"></i>{{blogDetail[0].currentime | date:'yyyy-MM-dd HH:mm:ss'}} </span>
+            </div>
+        </ng-template>
+       </div>
+     
+       
+    </div>
+    <div nz-col nzSpan="6">
+        <div [ngStyle]="{ width: '100%', border: '1px solid #d9d9d9', borderRadius: '4px',background:'#fff'}">
+            <nz-calendar [nzFullscreen]="false" (nzSelectChange)="onValueChange($event)" (nzPanelChange)="onPanelChange($event)"></nz-calendar>
+          </div>
+    </div>
+</div>
