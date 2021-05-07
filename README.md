@@ -39,20 +39,9 @@ npm start
 
 ## 首页：
 
-![](C:\Users\Naruto\Desktop\c1b64ee9e68635adbf8d8210efbe301.png)
+![](https://i.loli.net/2021/05/07/9U46SJ3Pv2cmutk.png)
 
-## 文章详情：
 
-![image-20210506093818907](C:\Users\Naruto\AppData\Roaming\Typora\typora-user-images\image-20210506093818907.png)
 
-## 登录页面：
 
-image-20210506093934403
 
-## 发表博客：
-
-![image-20210506094203158](C:\Users\Naruto\AppData\Roaming\Typora\typora-user-images\image-20210506094203158.png)
-
-## 编辑个人资料：
-
-![image-20210506094245944](C:\Users\Naruto\AppData\Roaming\Typora\typora-user-images\image-20210506094245944.png)
